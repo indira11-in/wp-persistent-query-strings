@@ -126,3 +126,12 @@ function plugin_admin_init()
     add_settings_section('plugin_main', 'Main Settings', 'plugin_section_text', 'plugin');
     add_settings_field('plugin_text_string', 'Plugin Text Input', 'plugin_setting_string', 'plugin', 'plugin_main');
 }
+
+function plugin_add_settings_link($links)
+{
+    $settings_link = '<a href="options-general.php?page=wp-persitent-query-strings">' . __('Settings') . '</a>';
+    array_push($links, $settings_link);
+    return $links;
+}
+$plugin = plugin_basename(__FILE__);
+add_filter("plugin_action_links_$plugin", 'plugin_add_settings_link');
