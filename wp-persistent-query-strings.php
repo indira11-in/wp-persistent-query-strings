@@ -99,7 +99,7 @@ add_filter('network_admin_url', 'add_my_query_var');
 add_action('admin_menu', 'plugin_admin_add_page');
 function plugin_admin_add_page()
 {
-    add_options_page('Custom Plugin Page', 'WP Persistent Query Strings', 'manage_options', 'plugin', 'plugin_options_page');
+    add_options_page('Custom Plugin Page', 'WP Persistent Query Strings', 'manage_options', 'wp-persistent-query-strings', 'plugin_options_page');
 }
 
 function plugin_options_page()
@@ -129,7 +129,7 @@ function plugin_admin_init()
 
 function plugin_add_settings_link($links)
 {
-    $settings_link = '<a href="options-general.php?page=wp-persitent-query-strings">' . __('Settings') . '</a>';
+    $settings_link = '<a href="options-general.php?page=wp-persistent-query-strings">' . __('Settings') . '</a>';
     array_push($links, $settings_link);
     return $links;
 }
