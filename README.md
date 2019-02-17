@@ -9,6 +9,7 @@ Barebones and easy-to-edit Wordpress plugin for setting a persistent query strin
 ## What's next:
 - Settings page
 - Cleanup WPPersisentQueryStrings class, follow DRY principles
+- Add MIT license
 
 ## Special thanks/resources:
 - https://wordpress.stackexchange.com/questions/155588/how-to-get-url-param-to-shortcode
