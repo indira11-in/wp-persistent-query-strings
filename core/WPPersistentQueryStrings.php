@@ -5,11 +5,34 @@ class WP_Persistent_Query_Strings
     {
 
         add_shortcode('sub', array($this, 'get_sub'));
-        add_shortcode('sub2', array($this, 'get_sub2'));
+        add_shortcode('sub2', array($this, 'get_sub'));
 
         $this->add_filters();
+
+        add_filter('plugin_action_links_' . plugin_basename(WPPQS_FILE), array($this, 'add_settings_links'));
     }
 
+    /**
+     * Add a "Settings" link to the listing on the plugins page
+     *
+     * @since  1.0.0
+     * @param  array $links Array of links passed in from WordPress core.
+     * @return array $links Array of links modified by the function passed back to WordPress
+     *
+     */
+    public function add_settings_links($links)
+    {
+
+        $settings_link = sprintf('<a href="options-general.php?page=wp-persistent-query-strings">%s</a>',
+            esc_html__('Settings', 'wp-persistent-query-strings')
+        );
+
+        array_unshift($links, $settings_link);
+
+        return $links;
+    }
+
+    // pass a param into here, for the default
     public function get_sub()
     {
         if (isset($_GET['sub'])) {
@@ -17,17 +40,6 @@ class WP_Persistent_Query_Strings
         } else {
             return 'demo';
         }
-    }
-
-    public function get_sub2()
-    {
-        if (isset($_GET['sub'])) {
-
-            return $_GET['sub'];
-        } else {
-            return '2360';
-        }
-
     }
 
     public function add_my_query_var($link)
@@ -46,6 +58,13 @@ class WP_Persistent_Query_Strings
         $url = "https://blog.onlinesalespro.com";
         return $url . "/page" . $str;
     }
+
+    // public function plugin_add_settings_link($links)
+    // {
+    //     $settings_link = '<a href="options-general.php?page=wp-persistent-query-strings">' . __('Settings') . '</a>';
+    //     array_push($links, $settings_link);
+    //     return $links;
+    // }
 
     public function add_filters()
     {
